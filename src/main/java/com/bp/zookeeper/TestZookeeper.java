@@ -1,11 +1,12 @@
 package com.bp.zookeeper;
 
+import org.apache.zookeeper.CreateMode;
+import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.ZooDefs.Ids;
+import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.data.Stat;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.apache.zookeeper.*;
 
 import java.io.IOException;
 import java.util.List;
