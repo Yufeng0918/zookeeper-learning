@@ -207,4 +207,9 @@ Mode: follower
 - zookeeper notify zkClient listener if data change
 - listener execute process()
 - event: get path watch, ls path watch
+#### Write data stream
+- client write data to server1
+- if server1 is not leader, server1 will redirect data to leader, leader will broadcast to all server, all server will notify leader once write is done
+- once leader receive success signal from more than half server
+![](images/Jietu20200501-133546.png)
 
