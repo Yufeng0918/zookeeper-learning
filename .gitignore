@@ -1,0 +1,5 @@
+.gradle
+.idea
+out
+out/*.class
+out/**.properties
