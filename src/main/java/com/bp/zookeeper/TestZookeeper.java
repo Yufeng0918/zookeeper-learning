@@ -2,6 +2,7 @@ package com.bp.zookeeper;
 
 import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.data.Stat;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.apache.zookeeper.*;
@@ -23,10 +24,25 @@ public class TestZookeeper {
 
     private ZooKeeper zkClient;
 
-    @BeforeClass
+    @Before
     public void init() throws IOException {
 
-        zkClient = new ZooKeeper(connectString, sessionTimeout, event -> {});
+        zkClient = new ZooKeeper(connectString, sessionTimeout, event -> {
+
+            	System.out.println("---------start----------");
+				List<String> children;
+				try {
+					children = zkClient.getChildren("/", true);
+					for (String child : children) {
+						System.out.println(child);
+					}
+					System.out.println("---------end----------");
+				} catch (KeeperException e) {
+					e.printStackTrace();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+        });
     }
 
     @Test
@@ -37,20 +53,20 @@ public class TestZookeeper {
 
     }
 
-//    @Test
-//    public void getDataAndWatch() throws KeeperException, InterruptedException{
-//
-//        List<String> children = zkClient.getChildren("/", true);
-//        for (String child : children) {
-//            System.out.println(child);
-//        }
-//        Thread.sleep(Long.MAX_VALUE);
-//    }
-//
-//    @Test
-//    public void exist() throws KeeperException, InterruptedException{
-//
-//        Stat stat = zkClient.exists("/atguigu", false);
-//        System.out.println(stat==null? "not exist":"exist");
-//    }
+    @Test
+    public void getDataAndWatch() throws KeeperException, InterruptedException{
+
+        List<String> children = zkClient.getChildren("/", true);
+        for (String child : children) {
+            System.out.println(child);
+        }
+        Thread.sleep(1000 * 60);
+    }
+
+    @Test
+    public void exist() throws KeeperException, InterruptedException{
+
+        Stat stat = zkClient.exists("/atguigu", false);
+        System.out.println(stat==null? "not exist":"exist");
+    }
 }
