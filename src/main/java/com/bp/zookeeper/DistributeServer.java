@@ -6,6 +6,7 @@ import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.ZooKeeper;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public class DistributeServer {
 
@@ -14,12 +15,7 @@ public class DistributeServer {
 		DistributeServer server = new DistributeServer();
 		server.getConnect();
 		server.regist(args[0]);
-		server.business();
-	}
-
-	private void business() throws InterruptedException {
-	
-		Thread.sleep(Long.MAX_VALUE);
+		new Scanner(System.in).nextLine();
 	}
 
 	private void regist(String hostname) throws KeeperException, InterruptedException {

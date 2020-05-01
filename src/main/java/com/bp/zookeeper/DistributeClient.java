@@ -6,6 +6,7 @@ import org.apache.zookeeper.ZooKeeper;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class DistributeClient {
 
@@ -14,12 +15,8 @@ public class DistributeClient {
 		DistributeClient client = new DistributeClient();
 		client.getConnect();
 		client.getChlidren();
-		client.business();
+		new Scanner(System.in).nextLine();
 		
-	}
-
-	private void business() throws InterruptedException {
-		Thread.sleep(Long.MAX_VALUE);
 	}
 
 	private void getChlidren() throws KeeperException, InterruptedException {
@@ -36,7 +33,7 @@ public class DistributeClient {
 		
 	}
 
-	private String connectString = "hadoop102:2181,hadoop103:2181,hadoop104:2181";
+	private String connectString = "127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183";
 	private int sessionTimeout = 2000;
 	private ZooKeeper zkClient;
 
